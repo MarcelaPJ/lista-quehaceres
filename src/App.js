@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Agregar from './componentes/AgregarTarea';
+import Tareas from './componentes/ListaTareas';
 
 function App() {
+  const [lista, setLista] = useState([]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Agregar lista={ lista } setLista={setLista} />
+      {lista.map((tarea, i) => (
+        <Tareas key={ tarea } tarea={tarea} setLista={setLista} index={i} lista={lista}/>
+      ))}
+      
     </div>
   );
 }
